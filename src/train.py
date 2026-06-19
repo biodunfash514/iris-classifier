@@ -2,7 +2,9 @@ import argparse
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import joblib
 import os
+
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
@@ -69,6 +71,11 @@ def main():
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
         print(f"Created directory: {output_dir}")
+
+    # Save model
+    model_path = os.path.join(output_dir, "iris_model.joblib")
+    joblib.dump(model, model_path)
+    print(f"Model saved to: {model_path}")
 
     # Generating and saving the Confusion Matrix Plot 
     fig, ax = plt.subplots(figsize=(8, 6))
